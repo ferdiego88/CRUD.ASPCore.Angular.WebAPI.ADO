@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { City } from 'src/models/city';
-import { Employee } from 'src/models/personal';
+import { Personal } from 'src/models/personal';
 
 @Component({
   selector: 'app-add-employee',
@@ -12,25 +12,24 @@ import { Employee } from 'src/models/personal';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  employeeForm: FormGroup;
+  personalForm: FormGroup;
   title = 'Create';
-  employeeId: number;
+  IdPersonal: number;
   errorMessage: any;
   cityList: City[];
 
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
     private _employeeService: EmployeeService, private _router: Router) {
     if (this._avRoute.snapshot.params['id']) {
-      this.employeeId = this._avRoute.snapshot.params['id'];
+      this.IdPersonal = this._avRoute.snapshot.params['id'];
     }
 
-    this.employeeForm = this._fb.group({
-      employeeId: 0,
-      name: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      department: ['', [Validators.required]],
-      city: ['']
-    })
+    this.personalForm = this._fb.group({
+      IdPersonal: 0,
+      nombres: ['', [Validators.required]],
+      fchNac: ['', [Validators.required]],
+      fchIngreso: ['', [Validators.required]]
+    });
   }
 
   ngOnInit() {
@@ -38,28 +37,28 @@ export class AddEmployeeComponent implements OnInit {
     //   (data: City[]) => this.cityList = data
     // );
 
-    if (this.employeeId > 0) {
-      this.title = 'Edit';
-      this._employeeService.getEmployeeById(this.employeeId)
-        .subscribe((response: Employee) => {
-          this.employeeForm.setValue(response);
+    if (this.IdPersonal > 0) {
+      this.title = 'Editar';
+      this._employeeService.getEmployeeById(this.IdPersonal)
+        .subscribe((response: Personal) => {
+          this.personalForm.setValue(response);
         }, error => console.error(error));
     }
   }
 
   save() {
 
-    if (!this.employeeForm.valid) {
+    if (!this.personalForm.valid) {
       return;
     }
 
     if (this.title === 'Create') {
-      this._employeeService.saveEmployee(this.employeeForm.value)
+      this._employeeService.saveEmployee(this.personalForm.value)
         .subscribe(() => {
           this._router.navigate(['/fetch-employee']);
         }, error => console.error(error));
     } else if (this.title === 'Edit') {
-      this._employeeService.updateEmployee(this.employeeForm.value)
+      this._employeeService.updateEmployee(this.personalForm.value)
         .subscribe(() => {
           this._router.navigate(['/fetch-employee']);
         }, error => console.error(error));
@@ -70,8 +69,7 @@ export class AddEmployeeComponent implements OnInit {
     this._router.navigate(['/fetch-employee']);
   }
 
-  get name() { return this.employeeForm.get('name'); }
-  get gender() { return this.employeeForm.get('gender'); }
-  get department() { return this.employeeForm.get('department'); }
-  get city() { return this.employeeForm.get('city'); }
+  get nombres() { return this.personalForm.get('nombres'); }
+  get fchNac() { return this.personalForm.get('fchNac'); }
+  get fchIngreso() { return this.personalForm.get('fchIngreso'); }
 }

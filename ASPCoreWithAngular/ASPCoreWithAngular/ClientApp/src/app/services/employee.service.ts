@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Employee } from 'src/models/personal';
+import { Personal } from 'src/models/personal';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class EmployeeService {
         }));
   }
 
-  saveEmployee(employee: Employee) {
+  saveEmployee(employee: Personal) {
     return this._http.post(this.myAppUrl + 'Create', employee)
       .pipe(map(
         response => {
@@ -45,7 +45,7 @@ export class EmployeeService {
         }));
   }
 
-  updateEmployee(employee: Employee) {
+  updateEmployee(employee: Personal) {
     return this._http.put(this.myAppUrl + 'Edit', employee)
       .pipe(map(
         response => {

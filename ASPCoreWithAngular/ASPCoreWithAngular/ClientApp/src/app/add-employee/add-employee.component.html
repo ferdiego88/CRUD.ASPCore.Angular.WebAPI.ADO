@@ -1,52 +1,48 @@
 <h1>{{title}}</h1>
-<h3>Employee</h3>
+<h3>Personal</h3>
 <hr />
 
 <form [formGroup]="employeeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
 
     <div class="form-group row">
-        <label class=" control-label col-md-12">Name</label>
+        <label class=" control-label col-md-12">Nro Documento</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" formControlName="name">
+            <input class="form-control" type="text" formControlName="IdPersonal">
         </div>
         <span class="text-danger" *ngIf="name?.invalid && formDir.submitted">
-            Name is required.
+            Nro Documentos es obligatorio.
         </span>
     </div>
     <div class="form-group row">
-        <label class="control-label col-md-12" for="Gender">Gender</label>
+        <label class="control-label col-md-12" for="Gender">Nombres</label>
         <div class="col-md-4">
-            <select class="form-control" data-val="true" formControlName="gender">
-                <option value="">-- Select Gender --</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
+            <input class="form-control" type="text" formControlName="nombres">
         </div>
         <span class="text-danger" *ngIf="gender?.invalid && formDir.submitted">
-            Gender is required
+            Nombre es obligatorio
         </span>
     </div>
     <div class="form-group row">
-        <label class="control-label col-md-12" for="Department">Department</label>
+        <label class="control-label col-md-12">Fecha Nacimiento</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" formControlName="department">
+            <input class="form-control" type="text" formControlName="fchNac">
         </div>
         <span class="text-danger" *ngIf="department?.invalid && formDir.submitted">
-            Department is required
+            Fecha de Nacimiento es obligatoria
         </span>
     </div>
     <div class="form-group row">
-        <label class="control-label col-md-12" for="City">City</label>
+        <label class="control-label col-md-12">Fecha de Ingreso</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" formControlName="city">
+            <input class="form-control" type="text" formControlName="fchIngreso">
         </div>
         <span class="text-danger" *ngIf="city?.invalid && formDir.submitted">
-            City is required
+            Fecha de Ingreso es obligatoria
         </span>
     </div>
     <hr />
     <div class="form-group">
-        <button type="submit" class=" btn btn-primary">Save</button>
-        <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+        <button type="submit" class=" btn btn-primary">Guardar</button>
+        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
     </div>
 </form>
