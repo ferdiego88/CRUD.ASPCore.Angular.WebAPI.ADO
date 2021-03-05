@@ -11,55 +11,55 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASPCoreWithAngular.Controllers
 {
     [Route("api/[controller]")]
-    public class EmployeeController : Controller
+    public class PersonalController : Controller
     {
-        private readonly IEmployee objemployee;
+        private readonly IPersonal objemployee;
 
-        public EmployeeController(IEmployee _objemployee)
+        public PersonalController(IPersonal _objemployee)
         {
             objemployee = _objemployee;
         }
 
         [HttpGet]
         [Route("Index")]
-        public IEnumerable<Employee> Index()
+        public IEnumerable<Personal> Index()
         {
-            return objemployee.GetAllEmployees();
+            return objemployee.GetAllPersonal();
         }
 
         [HttpPost]
         [Route("Create")]
-        public int Create([FromBody] Employee employee)
+        public int Create([FromBody] Personal employee)
         {
-            return objemployee.AddEmployee(employee);
+            return objemployee.AddPersonal(employee);
         }
 
         [HttpGet]
         [Route("Details/{id}")]
-        public Employee Details(int id)
+        public Personal Details(int id)
         {
-            return objemployee.GetEmployeeData(id);
+            return objemployee.GetPersonalData(id);
         }
 
         [HttpPut]
         [Route("Edit")]
-        public int Edit([FromBody]Employee employee)
+        public int Edit([FromBody]Personal employee)
         {
-            return objemployee.UpdateEmployee(employee);
+            return objemployee.UpdatePersonal(employee);
         }
 
         [HttpDelete]
         [Route("Delete/{id}")]
         public int Delete(int id)
         {
-            return objemployee.DeleteEmployee(id);
+            return objemployee.DeletePersonal(id);
         }
 
-        [HttpGet]
-        [Route("GetCityList")]
-        public IEnumerable<City> Details()
-        {
-            return objemployee.GetCities();
-        }
+        //[HttpGet]
+        //[Route("GetCityList")]
+        //public IEnumerable<City> Details()
+        //{
+        //    return objemployee.GetCities();
+        //}
     }
 }

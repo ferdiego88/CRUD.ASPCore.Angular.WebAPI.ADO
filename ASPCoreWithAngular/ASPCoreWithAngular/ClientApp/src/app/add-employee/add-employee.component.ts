@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { City } from 'src/models/city';
-import { Employee } from 'src/models/employee';
+import { Employee } from 'src/models/personal';
 
 @Component({
   selector: 'app-add-employee',
@@ -29,14 +29,14 @@ export class AddEmployeeComponent implements OnInit {
       name: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      city: ['', [Validators.required]]
+      city: ['']
     })
   }
 
   ngOnInit() {
-    this._employeeService.getCityList().subscribe(
-      (data: City[]) => this.cityList = data
-    );
+    // this._employeeService.getCityList().subscribe(
+    //   (data: City[]) => this.cityList = data
+    // );
 
     if (this.employeeId > 0) {
       this.title = 'Edit';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
-import { Employee } from 'src/models/employee';
+import { Personal } from 'src/models/personal';
 
 @Component({
   selector: 'app-fetch-employee',
@@ -9,7 +9,7 @@ import { Employee } from 'src/models/employee';
 })
 export class FetchEmployeeComponent {
 
-  public empList: Employee[];
+  public personalList: Personal[];
 
   constructor(private _employeeService: EmployeeService) {
     this.getEmployees();
@@ -17,7 +17,7 @@ export class FetchEmployeeComponent {
 
   getEmployees() {
     this._employeeService.getEmployees().subscribe(
-      (data: Employee[]) => this.empList = data
+      (data: Personal[]) => {this.personalList = data; console.log(data); }
     );
   }
 

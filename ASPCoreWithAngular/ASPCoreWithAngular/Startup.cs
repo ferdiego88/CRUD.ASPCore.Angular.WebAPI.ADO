@@ -22,7 +22,7 @@ namespace ASPCoreWithAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IEmployee, EmployeeDataAccessLayer>();
+            services.AddTransient<IPersonal, PersonalDataAccessLayer>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
             // In production, the Angular files will be served from this directory

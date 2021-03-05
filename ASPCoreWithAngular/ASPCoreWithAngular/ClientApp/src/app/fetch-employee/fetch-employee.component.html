@@ -1,35 +1,36 @@
-<h1>Employee Data</h1>
+<h1>Personal Data</h1>
 
-<p>This component demonstrates fetching Employee data from the server.</p>
+<p>Este componente trae la data data desde el Servidor.</p>
 
-<p *ngIf="!empList"><em>Loading...</em></p>
+<p *ngIf="!personalList"><em>Loading...</em></p>
 
 <p>
-    <a [routerLink]="['/register-employee']">Create New</a>
+    <a [routerLink]="['/register-employee']">Crear Nuevo</a>
 </p>
 
-<table class='table' *ngIf="empList">
+<table class='table' *ngIf="personalList">
     <thead>
         <tr>
-            <th>EmployeeId</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Department</th>
-            <th>City</th>
+            <th>Numero de Documento</th>
+            <th>Nombre Completo</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Fecha de Ingreso</th>
+            <th>Ver</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let emp of empList">
-            <td>{{ emp.employeeId }}</td>
-            <td>{{ emp.name }}</td>
-            <td>{{ emp.gender }}</td>
-            <td>{{ emp.department }}</td>
-            <td>{{ emp.city }}</td>
+        <tr *ngFor="let personal of personalList">
+            <td>{{ personal.idPersonal }}</td>
+            <td>{{ personal.nombreCompleto + " " + personal.apPaterno + " " + personal.apMaterno }}</td>
+            <td>{{ personal.fchNac }}</td>
+            <td>{{ personal.fchIngreso }}</td>
+            <td>Ver Hijos</td>
             <td>
-            <td>
-                <a [routerLink]="['/employee/edit/', emp.employeeId]">Edit</a> |
-                <a [routerLink]="" (click)="delete(emp.employeeId)">Delete</a>
-            </td>
+                <td>
+                    <a [routerLink]="['/employee/edit/', personal.idPersonal]">Edit</a> |
+                    <a [routerLink]="" (click)="delete(personal.idPersonal)">Delete</a>
+                </td>
         </tr>
     </tbody>
 </table>
